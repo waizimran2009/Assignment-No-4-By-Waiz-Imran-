@@ -68,77 +68,89 @@ print("="*50)
 # ---------- QUESTION 7 ----------
 print("\n📌 QUESTION 7: Capitalize each word in a string")
 print("-"*50)
-text = input("👉 Enter a sentence: ")
-capitalized = " ".join(word.capitalize() for word in text.split())
-print("After Capitalization:", capitalized)
+text = "hello world"
+
+capitalized = text[0].upper() + text[1:]
+
+print("Result:", capitalized)
+
 print("="*50)
 
 
 # ---------- QUESTION 8 ----------
 print("\n📌 QUESTION 8: Sum of each row in a matrix")
 print("-"*50)
-m = int(input("👉 Enter number of rows: "))
-n = int(input("👉 Enter number of columns: "))
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
 
-matrix = []
-print("\nEnter matrix elements row by row:")
-for i in range(m):
-    row = [int(input(f"Element [{i+1},{j+1}]: ")) for j in range(n)]
-    matrix.append(row)
+for row in matrix:
+    total = 0
+    for num in row:
+        total += num
+    print("Sum of row:", total)
 
-print("\nMatrix and Row Sums:")
-for i in range(m):
-    print(matrix[i], "  Sum =", sum(matrix[i]))
 print("="*50)
 
 
 # ---------- QUESTION 9 ----------
 print("\n📌 QUESTION 9: Add two matrices")
 print("-"*50)
-rows = int(input("👉 Enter number of rows: "))
-cols = int(input("👉 Enter number of columns: "))
+# Example matrices
+A = [
+    [1, 2, 3],
+    [4, 5, 6]
+]
 
-print("\nEnter elements of First Matrix:")
-matrix1 = [[int(input(f"Element [{i+1},{j+1}]: ")) for j in range(cols)] for i in range(rows)]
+B = [
+    [7, 8, 9],
+    [1, 2, 3]
+]
 
-print("\nEnter elements of Second Matrix:")
-matrix2 = [[int(input(f"Element [{i+1},{j+1}]: ")) for j in range(cols)] for i in range(rows)]
+# result matrix of same size
+result = []
 
-result = [[matrix1[i][j] + matrix2[i][j] for j in range(cols)] for i in range(rows)]
+for i in range(len(A)):          # loop over rows
+    row = []
+    for j in range(len(A[0])):   # loop over columns
+        row.append(A[i][j] + B[i][j])
+    result.append(row)
 
-print("\n✅ Resultant Matrix (After Addition):")
-for row in result:
-    print(row)
+print("Resultant Matrix after Addition:")
+for r in result:
+    print(r)
+
 print("="*50)
 
 
 # ---------- QUESTION 10 ----------
 print("\n📌 QUESTION 10: Multiply two matrices")
 print("-"*50)
-rows1 = int(input("👉 Enter rows of first matrix: "))
-cols1 = int(input("👉 Enter columns of first matrix: "))
-rows2 = int(input("👉 Enter rows of second matrix: "))
-cols2 = int(input("👉 Enter columns of second matrix: "))
+# Example matrices
+A = [
+    [1, 2, 3],
+    [4, 5, 6]
+]
 
-if cols1 != rows2:
-    print("❌ Matrix multiplication not possible! Columns of first must equal rows of second.")
-else:
-    print("\nEnter elements of First Matrix:")
-    matrix1 = [[int(input(f"Element [{i+1},{j+1}]: ")) for j in range(cols1)] for i in range(rows1)]
+B = [
+    [7, 8],
+    [9, 10],
+    [11, 12]
+]
 
-    print("\nEnter elements of Second Matrix:")
-    matrix2 = [[int(input(f"Element [{i+1},{j+1}]: ")) for j in range(cols2)] for i in range(rows2)]
+# result matrix with size (rows of A) x (cols of B)
+result = [[0 for _ in range(len(B[0]))] for _ in range(len(A))]
 
-    # Initialize result matrix with zeros
-    result = [[0 for _ in range(cols2)] for _ in range(rows1)]
+# matrix multiplication
+for i in range(len(A)):                 # loop over rows of A
+    for j in range(len(B[0])):          # loop over cols of B
+        for k in range(len(B)):         # loop over rows of B
+            result[i][j] += A[i][k] * B[k][j]
 
-    # Matrix multiplication
-    for i in range(rows1):
-        for j in range(cols2):
-            for k in range(cols1):
-                result[i][j] += matrix1[i][k] * matrix2[k][j]
+print("Resultant Matrix after Multiplication:")
+for r in result:
+    print(r)
 
-    print("\n✅ Resultant Matrix (After Multiplication):")
-    for row in result:
-        print(row)
 print("="*50)
